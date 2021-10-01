@@ -11,6 +11,7 @@ export default function App() {
         
         <View style={styles.items}>
           <Task text={'Uygulamayı tamamla ⏰'}></Task>
+          <Task text={'Test'}></Task>
         </View>
       </View>
     </View>
