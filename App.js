@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 36
   },
   scrollView:{
-    maxHeight:'92%'
+    maxHeight:'80%'
   }
 });
