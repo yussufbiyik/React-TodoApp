@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -25,15 +25,17 @@ export default function App() {
         <Text style={styles.sectionTitle}>Yapılacaklar Listesi</Text>
         
         <View style={styles.items}>
-          {
-            taskItems.map((item, index) => {
-              return (
-                <TouchableOpacity key={index}  onPress={() => completeTask(index)}>
-                  <Task text={item} /> 
-                </TouchableOpacity>
-              )
-            })
-          }
+          <ScrollView style={styles.scrollView}>
+            {
+              taskItems.map((item, index) => {
+                return (
+                  <TouchableOpacity key={index}  onPress={() => completeTask(index)}>
+                    <Task text={item} /> 
+                  </TouchableOpacity>
+                )
+              })
+            }
+          </ScrollView>
         </View>
       </View>
 
@@ -100,4 +102,7 @@ const styles = StyleSheet.create({
   addText:{
     fontSize: 36
   },
+  scrollView:{
+    maxHeight:'92%'
+  }
 });
