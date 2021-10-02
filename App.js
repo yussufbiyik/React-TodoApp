@@ -1,19 +1,56 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task]);
+    setTask(null);
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index,1);
+    setTaskItems(itemsCopy)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Bugün Yapılacaklar</Text>
+        <Text style={styles.sectionTitle}>Yapılacaklar Listesi</Text>
         
         <View style={styles.items}>
-          <Task text={'Uygulamayı tamamla ⏰'}></Task>
-          <Task text={'Test'}></Task>
+          {
+            taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity key={index}  onPress={() => completeTask(index)}>
+                  <Task text={item} /> 
+                </TouchableOpacity>
+              )
+            })
+          }
         </View>
       </View>
+
+      <KeyboardAvoidingView 
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.writeTaskWrapper}>
+
+        <TextInput style={styles.input} placeholder={'Yapılacak bir şey ekle!'} value={task} onChangeText={text => setTask(text)} />
+        
+        <TouchableOpacity onPress={() => handleAddTask()}>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+        </TouchableOpacity>
+
+      </KeyboardAvoidingView>
+
     </View>
   );
 }
@@ -21,18 +58,46 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex           : 1,
-    backgroundColor: '#FFF6EB',
+    backgroundColor: '#F5F5F5',
   },
   tasksWrapper:{
     paddingTop       : 80,
     paddingHorizontal: 20,
   },
   sectionTitle:{
-    color:'#000',
-    fontSize  : 24,
+    fontSize  : 40,
     fontWeight: 'bold',
+    color     : '#101419',
   },
   items:{
-    marginTop:10,
+    marginTop: 10,
+  },
+  writeTaskWrapper:{
+    bottom        : 20,
+    flexDirection : 'row',
+    width         : '100%',
+    alignItems    : 'center',
+    position      : 'absolute',
+    justifyContent: 'space-around',
+  },
+  input:{
+    paddingVertical  : 15,
+    paddingHorizontal: 15,
+    borderRadius     : 10,
+    paddingLeft      : 10,
+    height           : 60,
+    width            : 250,
+    backgroundColor  : '#fff',
+  },
+  addWrapper:{
+    width          : 60,
+    height         : 60,
+    borderRadius   : 10,
+    backgroundColor: '#fff',
+    justifyContent : 'center',
+    alignItems     : 'center',
+  },
+  addText:{
+    fontSize: 36
   },
 });

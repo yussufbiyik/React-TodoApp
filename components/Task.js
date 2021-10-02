@@ -8,46 +8,36 @@ const Task = (props) => {
                 <View style={styles.square}></View>
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View style={styles.circular}>
-
-            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     item:{
-        backgroundColor: '#fff',
         padding        : 15,
         borderRadius   : 10,
+        marginBottom   : 10,
         flexDirection  : 'row',
+        backgroundColor: '#fff',
         alignItems     : 'center',
         justifyContent : 'space-between',
-        marginBottom   : 20
     },
     itemLeft:{
         flexDirection: 'row',
-        alignItems   : 'center',
         flexWrap     : 'wrap',
+        alignItems   : 'center',
     },
     square:{
         width          : 24,
         height         : 24,
-        opacity        : .5,
         borderRadius   : 5,
-        backgroundColor: '#77E0A5',
         marginRight    : 10,
+        backgroundColor: '#FAEAEC',
     },
     itemText:{
+        fontSize:16,
         maxWidth: '85%',
-        fontSize:16
-    },
-    circular:{
-        width       : 12,
-        height      : 12,
-        borderColor : '#77E0A5',
-        borderWidth : 2,
-        borderRadius: 5,
+        color:'#101419',
     },
 });
 
