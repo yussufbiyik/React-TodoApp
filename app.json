@@ -20,9 +20,10 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "yusufbiyik.todoapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#F5F5F5"
       }
     },
     "web": {
