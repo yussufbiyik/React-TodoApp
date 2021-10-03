@@ -75,10 +75,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   writeTaskWrapper:{
-    bottom        : 20,
+    bottom        : 0,
+    paddingVertical:20,
     flexDirection : 'row',
     width         : '100%',
     alignItems    : 'center',
+    backgroundColor:'#F5F5F5',
     position      : 'absolute',
     justifyContent: 'space-around',
   },
@@ -103,6 +105,6 @@ const styles = StyleSheet.create({
     fontSize: 36
   },
   scrollView:{
-    maxHeight:'80%'
+    marginBottom:200
   }
 });
